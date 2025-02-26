@@ -10,17 +10,14 @@ import { useEffect } from "react";
 function App() {
 
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector(state => state.auth);
-
+  const { user, loading } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if(loading) return;
-
   return (
-     <Routes>
+      <Routes>
       <Route path="/" element={user? <Navigate to={'/tasks'} /> : <Navigate to={'/login'} />} />
       <Route path="/login" element={user? <Navigate to={'/tasks'} /> : <Login />} />
       <Route path="/register" element={user? <Navigate to={'/tasks'} /> : <Register />} />

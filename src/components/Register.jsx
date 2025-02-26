@@ -9,17 +9,21 @@ export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { error } = useSelector(state => state.auth);
-  const [success, setSuccess] = useState(false);
+  const [registered, setRegistered] = useState(false);
 
   const dispatch = useDispatch();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     const result = await dispatch(register({ username, password }));
-    if (register.fulfilled.match(result)) {
-        setSuccess(true);
+    if(register.fulfilled.match(result)){
+      setRegistered(true);
+      setPassword("");
+      setUsername("");
     }
   }
+  
+  if(error.type === "register") setRegistered(false);
 
   return (
     <div className="flex justify-center min-h-screen">
@@ -27,9 +31,9 @@ export default function Register() {
         <h2 className="text-2xl font-bold text-center text-gray-800">TODO App</h2>
         <p className="text-sm text-gray-500 text-center mb-6">By Mobassera Zaman</p>
 
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {error.type === "register" && <p className="text-red-500 text-center mb-4">{error.message}</p>}
 
-        {!success && <form onSubmit={handleRegister} className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-4">
           <div className="relative">
             <input
               type="text"
@@ -58,9 +62,9 @@ export default function Register() {
           >
             Register
           </button>
-        </form>}
+        </form>
 
-       {success && <p className="text-sm text-gray-500 text-center mt-4">
+       {registered && <p className="text-sm text-gray-500 text-center mt-4">
           User successfully registered.{" "}
           <Link to="/login" className="text-blue-500 hover:underline">
             Login

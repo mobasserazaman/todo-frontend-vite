@@ -25,7 +25,7 @@ export default function Login() {
         <h2 className="text-2xl font-bold text-center text-gray-800">TODO App</h2>
         <p className="text-sm text-gray-500 text-center mb-6">By Mobassera Zaman</p>
 
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {error.type === "login" && <p className="text-red-500 text-center mb-4">{error.message}</p>}
 
         <form onSubmit={handleLogin} className="space-y-4">
 
