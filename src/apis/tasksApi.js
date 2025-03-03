@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 
-const url = "http://localhost:5000/todos";
+const rootUrl = process.env.BACKEND_URL;
+const url = `${rootUrl}/todos`;
 
 export function deleteTask(id) {
     return axios.delete(`${url}/${id}`, { withCredentials: true });
