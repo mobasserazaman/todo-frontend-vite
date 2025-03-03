@@ -41,6 +41,6 @@ jobs:
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-branch: main
-          vercel-yes: true
+          vercel-args: '--yes'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
