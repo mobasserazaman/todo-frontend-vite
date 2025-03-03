@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const rootUrl = import.meta.env.VITE_URL;
+console.log(rootUrl);
 const url = `${rootUrl}/auth`;
 
 export const signin = (user) => {
