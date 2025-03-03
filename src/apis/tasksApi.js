@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const rootUrl = process.env.BACKEND_URL;
+const rootUrl = import.meta.env.VITE_URL;
 const url = `${rootUrl}/todos`;
 
 export function deleteTask(id) {
